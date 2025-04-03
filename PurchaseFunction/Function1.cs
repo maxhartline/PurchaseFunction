@@ -49,25 +49,24 @@ namespace PurchaseFunction
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 await conn.OpenAsync(); // Note the async
-                // my table is Purchases plural, ensure this is right
                 var query = "INSERT INTO dbo.Purchases (concertId, Email, Name, Phone, Quantity, CreditCard, Expiration, SecurityCode, Address, City, Province, PostalCode, Country) " +
                     "VALUES (@concertId, @Email, @Name, @Phone, @Quantity, @CreditCard, @Expiration, @SecurityCode, @Address, @City, @Province, @PostalCode, @Country)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Name", purchase.concertId);
-                    cmd.Parameters.AddWithValue("@Address", purchase.Email);
-                    cmd.Parameters.AddWithValue("@Email", purchase.Name);
-                    cmd.Parameters.AddWithValue("@Name", purchase.Phone);
-                    cmd.Parameters.AddWithValue("@Address", purchase.Quantity);
-                    cmd.Parameters.AddWithValue("@Email", purchase.CreditCard);
-                    cmd.Parameters.AddWithValue("@Name", purchase.Expiration);
-                    cmd.Parameters.AddWithValue("@Address", purchase.SecurityCode);
-                    cmd.Parameters.AddWithValue("@Email", purchase.Address);
-                    cmd.Parameters.AddWithValue("@Name", purchase.City);
-                    cmd.Parameters.AddWithValue("@Address", purchase.Province);
-                    cmd.Parameters.AddWithValue("@Email", purchase.PostalCode);
-                    cmd.Parameters.AddWithValue("@Name", purchase.Country);
+                    cmd.Parameters.AddWithValue("@concertId", purchase.concertId);
+                    cmd.Parameters.AddWithValue("@Email", purchase.Email);
+                    cmd.Parameters.AddWithValue("@Name", purchase.Name);
+                    cmd.Parameters.AddWithValue("@Phone", purchase.Phone);
+                    cmd.Parameters.AddWithValue("@Quantity", purchase.Quantity);
+                    cmd.Parameters.AddWithValue("@CreditCard", purchase.CreditCard);
+                    cmd.Parameters.AddWithValue("@Expiration", purchase.Expiration);
+                    cmd.Parameters.AddWithValue("@SecurityCode", purchase.SecurityCode);
+                    cmd.Parameters.AddWithValue("@Address", purchase.Address);
+                    cmd.Parameters.AddWithValue("@City", purchase.City);
+                    cmd.Parameters.AddWithValue("@Province", purchase.Province);
+                    cmd.Parameters.AddWithValue("@PostalCode", purchase.PostalCode);
+                    cmd.Parameters.AddWithValue("@Country", purchase.Country);
 
                     await cmd.ExecuteNonQueryAsync(); // Note the async
                 }
